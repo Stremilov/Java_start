@@ -9,11 +9,9 @@ public class Main {
         Student Sveta = new Student(19, "Sveta", 5, 3);
 
         Lesson lesson_1 = new Lesson(1F, "Natalya Mihaylovna", Lev, German);
-//        lesson_1.mark_everyone(lesson_1.students.toArray(new Student[0]), 5);
         lesson_1.mark_everyone(5);
 
         Lesson lesson_2 = new Lesson(1.5F, "Pavel Sergeevich", Sveta);
-//        lesson_2.mark_everyone(lesson_2.students.toArray(new Student[0]), 5);
         lesson_2.mark_everyone(5);
 
         Lev.display_student_info();
