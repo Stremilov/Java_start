@@ -60,6 +60,7 @@ class Student extends Person {
         System.out.printf("Student %s says 'Hi' to student %s.\n", getName(), say_to_name);
     }
 
+
     public void display_student_info() {
         System.out.printf("%s is %s years old. He is %s course.\n", getName(), getAge(), form);
         System.out.println("Max possible student mark: " + max_possible_mark);
