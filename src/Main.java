@@ -3,25 +3,22 @@ import java.util.Arrays;
 
 public class Main {
 
+
+
     public static void main() {
         Student Lev = new Student(18, "Lev", 1, 5);
         Student German = new Student(24, "German", 3, 5);
         Student Sveta = new Student(19, "Sveta", 5, 3);
 
-        Lesson lesson_1 = new Lesson(1F, "Natalya Mihaylovna", Lev, German);
-        lesson_1.mark_everyone(5);
+        Lesson lesson_1 = new Lesson("Programming", 1F, "Natalya Mihaylovna", Lev, German);
+        Lesson lesson_2 = new Lesson("History", 1.5F, "Pavel Sergeevich", Sveta);
 
-        Lesson lesson_2 = new Lesson(1.5F, "Pavel Sergeevich", Sveta);
-        lesson_2.mark_everyone(5);
-
-        Lev.display_student_info();
-        German.display_student_info();
-        Sveta.display_student_info();
-
-        lesson_1.mark_everyone(4);
-
-        Lev.display_student_info();
+        Lev.set_like(lesson_1.lesson_name);
+        Lev.like();
+        Lev.set_like(German.name);
+        Lev.like();
     }
+
 }
 
 class Person {
@@ -42,9 +39,10 @@ class Person {
     }
 }
 
-class Student extends Person {
+class Student extends Person implements Likable {
     int form;
     int max_possible_mark;
+    ArrayList likable_objects = new ArrayList();
     ArrayList marks = new ArrayList();
 
     public Student(int age, String name, int form, int max_possible_mark) {
@@ -70,15 +68,28 @@ class Student extends Person {
         System.out.println();
     }
 
+    public void set_like(Object object) {
+        likable_objects.add(object);
+    }
+
+     public void like() {
+        System.out.printf("User %s likes ", getName());
+        for (Object object : likable_objects) {
+            System.out.print(object + " ");
+        }
+        System.out.println();
+    }
 }
 
-class Lesson {
+class Lesson implements Likable {
+    String lesson_name;
     String teacher;
     float duration;
     ArrayList<Student> students;
 
-    public Lesson(float duration, String teacher, Student... cameStudents) {
+    public Lesson(String lesson_name, float duration, String teacher, Student... cameStudents) {
         students = new ArrayList<>();
+        this.lesson_name = lesson_name;
         this.teacher = teacher;
         this.duration = duration;
         students.addAll(Arrays.asList(cameStudents));
@@ -106,4 +117,13 @@ class Lesson {
             }
         }
     }
+
+    public void like() {
+        // code
+    }
 }
+
+interface Likable {
+    void like();
+}
+
